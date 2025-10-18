@@ -2,7 +2,7 @@ const User = require('../models/userSchema')
 const argon2 = require('argon2')
 
 const registerUser = async(req,res) => {
-    const {userName,email,password} = req.body
+    const {username,email,password} = req.body
 
     try {
         const isExistsUser = await User.findOne()
@@ -13,7 +13,7 @@ const registerUser = async(req,res) => {
             })
         }
         const hashPassword = await argon2.hash(password)
-        const newUser = new User({userName,email,password:hashPassword})
+        const newUser = new User({username,email,password:hashPassword})
             await newUser.save()
         return res.status(201).json({
             success:true,
