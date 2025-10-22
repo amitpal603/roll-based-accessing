@@ -5,7 +5,7 @@ const registerUser = async(req,res) => {
     const {username,email,password} = req.body
 
     try {
-        const isExistsUser = await User.findOne()
+        const isExistsUser = await User.findOne({email})
 
         if(isExistsUser){
             return res.json({

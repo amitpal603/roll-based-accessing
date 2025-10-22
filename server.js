@@ -7,17 +7,17 @@ const app  = express()
 connectDB()
 
 const corsOption = {
-    origin: 'http://localhost:5173',
+    origin: "http://localhost:5173",
     methods : ["GET","POST","PUT","DELETE"],
     credential : true
 }
+app.use(cors(corsOption))
 app.use(express.json())
 app.use('/user',userRouters)
-app.use(cors(corsOption))
 app.get('/', (req,res) => {
     res.send('Hello world !')
 })
 
-const PORT  = process.env.PORT || 4000
+const PORT  = process.env.PORT || 5000
 
 app.listen(PORT , () => console.log(`server running http://localhost:${PORT}`))
